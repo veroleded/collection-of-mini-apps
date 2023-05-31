@@ -1,31 +1,40 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Converter from './Converter';
-import { AppSelectProvider, selectAppContext } from '../context/context';
+import { AppSelectProvider, navContext } from '../context/navContext';
 import Navigator from './Navigator';
+import Main from './Main';
+import Calc from './calc/Calc'
+import routes from '../routes/routes';
 
 function App() {
-
   const getClassNames = (selectEl: boolean): string =>
     selectEl
-      ? 'flex justify-between ml-48 min-h-full items-start p-0'
-      : 'flex justify-center min-h-full items-start p-0';
+      ? 'flex justify-between ml-48 h-full items-start p-0'
+      : 'flex justify-center h-full items-start p-0';
 
   return (
-    <AppSelectProvider>
-      <div className='bg-gradient-to-l from-orange-500 bg-orange-300 text-white'>
-      <Header />
-      <selectAppContext.Consumer>
-        {({ selectEl }) => (
-          <div className={getClassNames(selectEl)}>
-            <Converter />
-            <selectAppContext.Consumer>
-              {({ selectEl }) => <>{selectEl && <Navigator />}</>}
-            </selectAppContext.Consumer>
-          </div>
-        )}
-      </selectAppContext.Consumer>
-      </div>
-    </AppSelectProvider>
+    <BrowserRouter>
+      <AppSelectProvider>
+        <div className="bg-gradient-to-l from-orange-500 bg-orange-300 text-white">
+          <Header />
+          <navContext.Consumer>
+            {({ navPanel }) => (
+              <div className={getClassNames(navPanel)}>
+                <Routes>
+                  <Route path={routes.mainPage()} element={<Main />} />
+                  <Route path={routes.bin2Dec()} element={<Converter />} />
+                  <Route path={routes.calc()} element= {<Calc />} />
+                </Routes>
+                <navContext.Consumer>
+                  {({ navPanel }) => <>{navPanel && <Navigator />}</>}
+                </navContext.Consumer>
+              </div>
+            )}
+          </navContext.Consumer>
+        </div>
+      </AppSelectProvider>
+    </BrowserRouter>
   );
 }
 

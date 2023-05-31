@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { selectAppContext } from '../context/context';
+import { navContext } from '../context/navContext';
 
 export default function Header() {
-  const { selectEl, open, close } = useContext(selectAppContext);
+  const { navPanel, open, close, app } = useContext(navContext);
   const [lang, setLang] = useState('ru-RU');
   const { t, i18n } = useTranslation();
 
@@ -50,15 +50,15 @@ export default function Header() {
         <h1 className="px-3 font-extrabold text-3xl">
           <a href="/">Veroled</a>
         </h1>
+        <h1 className="px-3 font-extrabold text-3xl">{app}</h1>
         <nav>
           <ul className="flex space-x-4 mr-5">
             <li>
-              <button onClick={changeLangHanlder} className=" text-xl">{t('nav.lang')}</button>
+              <button onClick={changeLangHanlder} className=" text-xl">
+                {t('nav.lang')}
+              </button>
             </li>
-            <li>
-              {!selectEl && buttonOpen}
-              {selectEl && buttonCLose}
-            </li>
+            <li>{!navPanel ? buttonOpen : buttonCLose}</li>
           </ul>
         </nav>
       </div>

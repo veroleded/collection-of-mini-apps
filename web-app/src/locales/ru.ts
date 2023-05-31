@@ -4,10 +4,12 @@ const ru = {
       lang: 'RU',
     },
     bin2Dec: {
+      description: 'Bin2Dec принимает двоичные числа, а затем выводит их десятичный эквивалент.',
       convert: 'Конвертировать',
-      placeholder: 'Введите 1 или 2',
+      placeholder: 'Введите 0 или 1',
+      result: 'Результат',
       errors: {
-        mustNumber: 'Должно быть числом',
+        mustNumber: 'Только 1 или 0',
       },
     },
   },
