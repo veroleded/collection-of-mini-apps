@@ -22,9 +22,9 @@ function App() {
             {({ navPanel }) => (
               <div className={getClassNames(navPanel)}>
                 <Routes>
-                  <Route path={routes.mainPage()} element={<Main />} />
-                  <Route path={routes.bin2Dec()} element={<Converter />} />
-                  <Route path={routes.calc()} element= {<Calc />} />
+                  <Route path={routes.Main()} element={<Main />} />
+                  <Route path={routes.Bin2Dec()} element={<Converter />} />
+                  <Route path={routes.Calculator()} element= {<Calc />} />
                 </Routes>
                 <navContext.Consumer>
                   {({ navPanel }) => <>{navPanel && <Navigator />}</>}

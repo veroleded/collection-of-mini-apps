@@ -1,7 +1,7 @@
 const routes = {
-  mainPage: () => '/',
-  bin2Dec: () => '/bin2Dec',
-  calc: () => '/calc',
+  Main: () => '/',
+  Bin2Dec: () => '/bin2Dec',
+  Calculator: () => '/calc',
 };
 
 export default routes;

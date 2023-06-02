@@ -1,7 +1,10 @@
 const en = {
   translation: {
-    nav: {
+    header: {
       lang: 'EN',
+      calc: 'Calculator',
+      bin2Dec: 'Bin2Dec',
+      home: 'Home',
     },
     bin2Dec: {
       description: 'Bin2Dec takes binary numbers and then outputs their decimal equivalent.',

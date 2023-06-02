@@ -35,7 +35,7 @@ const Converter = () => {
             <input
               type="text"
               name="binaryNumber"
-              className="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:shadow-md"
+              className="w-full px-4 py-2 text-black bg-gray-200 rounded-lg focus:outline-none focus:bg-white focus:shadow-md"
               placeholder={placeholder}
               value={inputValue}
               onChange={changeHandler}

@@ -1,7 +1,10 @@
 const ru = {
   translation: {
-    nav: {
+    header: {
       lang: 'RU',
+      calc: 'Калькулятор',
+      bin2Dec: 'Bin2Dec',
+      home: 'Главная',
     },
     bin2Dec: {
       description: 'Bin2Dec принимает двоичные числа, а затем выводит их десятичный эквивалент.',
