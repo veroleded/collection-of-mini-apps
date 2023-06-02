@@ -5,6 +5,7 @@ const ru = {
       calc: 'Калькулятор',
       bin2Dec: 'Bin2Dec',
       home: 'Главная',
+      paint: 'Холст',
     },
     bin2Dec: {
       description: 'Bin2Dec принимает двоичные числа, а затем выводит их десятичный эквивалент.',

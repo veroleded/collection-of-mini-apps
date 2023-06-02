@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { navContext } from '../context/navContext';
 import { useLocation } from 'react-router-dom';
 
-type appNamesKey = '/bin2Dec' | '/' | '/calc';
+type appNamesKey = '/bin2Dec' | '/' | '/calc' | '/paint';
 
 export default function Header() {
   const { navPanel, open, close } = useContext(navContext);
@@ -15,6 +15,7 @@ export default function Header() {
     '/bin2Dec': t('header.bin2Dec'),
     '/': t('header.home'),
     '/calc': t('header.calc'),
+    '/paint': t('header.paint'),
   }
 
   const pageName = pagesNames[location.pathname as appNamesKey]

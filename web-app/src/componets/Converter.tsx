@@ -26,7 +26,7 @@ const Converter = () => {
   const placeholder = t('bin2Dec.placeholder');
 
   return (
-    <div className="mt-10 bg-black bg-opacity-60 w-1/2 h-96 rounded-lg shadow-xl shadow-orange-800">
+    <div className="mt-10 bg-black bg-opacity-60 w-max h-96 rounded-lg shadow-xl shadow-orange-800">
       <div className="m-5 flex-wrap">
         <p className="mb-8 mt-8 text-center">{t('bin2Dec.description')}</p>
         {!validity && <div className='m-2 text-red-500'>{t('bin2Dec.errors.mustNumber')}</div>}

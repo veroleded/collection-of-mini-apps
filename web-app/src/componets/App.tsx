@@ -4,13 +4,14 @@ import Converter from './Converter';
 import { AppSelectProvider, navContext } from '../context/navContext';
 import Navigator from './Navigator';
 import Main from './Main';
-import Calc from './calc/Calc'
+import Calc from './calc/Calc';
+import Paint from './Paint';
 import routes from '../routes/routes';
 
 function App() {
   const getClassNames = (selectEl: boolean): string =>
     selectEl
-      ? 'flex justify-between ml-48 h-full items-start p-0'
+      ? 'flex justify-center ml-48 h-full items-start p-0'
       : 'flex justify-center h-full items-start p-0';
 
   return (
@@ -21,14 +22,17 @@ function App() {
           <navContext.Consumer>
             {({ navPanel }) => (
               <div className={getClassNames(navPanel)}>
-                <Routes>
-                  <Route path={routes.Main()} element={<Main />} />
-                  <Route path={routes.Bin2Dec()} element={<Converter />} />
-                  <Route path={routes.Calculator()} element= {<Calc />} />
-                </Routes>
-                <navContext.Consumer>
-                  {({ navPanel }) => <>{navPanel && <Navigator />}</>}
-                </navContext.Consumer>
+                <div className="flex justify-center w-5/6">
+                  <Routes>
+                    <Route path={routes.Main()} element={<Main />} />
+                    <Route path={routes.Bin2Dec()} element={<Converter />} />
+                    <Route path={routes.Calculator()} element={<Calc />} />
+                    <Route path={routes.Paint()} element={<Paint />} />
+                  </Routes>
+                </div>
+                  <navContext.Consumer>
+                    {({ navPanel }) => <>{navPanel && <Navigator />}</>}
+                  </navContext.Consumer>
               </div>
             )}
           </navContext.Consumer>
