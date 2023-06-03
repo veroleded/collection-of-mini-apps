@@ -16,7 +16,10 @@ const en = {
         mustNumber: '1 or 0 only'
       }
     },
-  }
+    paint: {
+      size: 'Brush size'
+    },
+  },
 };
 
 export default en;
