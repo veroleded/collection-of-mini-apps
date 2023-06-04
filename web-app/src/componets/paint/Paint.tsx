@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import routes from '../../routes/routes';
+import Canvas from './Canvas'
 
 const Paint = () => {
   const { t } = useTranslation();
-  const [color, setColor] = useState('');
+
+  const [color, setColor] = useState('#000000');
   const [brush, setBrush] = useState('brush');
   const [brashSizeIsOpen, setBrashSizeIsOpen] = useState(false);
-  const [brushSize, setBrushSize] = useState(10);
-  const [draw, setDraw] = useState(false);
-
-  const mauseMoveHandler = (e: React.MouseEvent) => {
-    console.log('Mouse X: ' + e.clientX);
-    console.log('Mouse Y: ' + e.clientY);
-  };
+  const [brushSize, setBrushSize] = useState(0.3);
 
   const colorHandler = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
+    console.log(value)
     setColor(value);
   };
 
@@ -29,8 +27,8 @@ const Paint = () => {
   };
 
   return (
-    <div className="w-11/12 h-full bg-orange-500 mt-6 flex justify-center rounded-lg shadow-xl shadow-orange-800">
-      <div className="w-max h-max">
+    <div className="w-full h-full mt-6 flex rounded-lg shadow-xl shadow-orange-800">
+      <div className="w-max h-max bg-orange-500 rounded-md rounded-r-none shadow-md shadow-orange-800">
         <label htmlFor="input" className="relative cursor-pointer">
           <input
             id="input"
@@ -55,7 +53,7 @@ const Paint = () => {
             </svg>
           </div>
         </label>
-        <div>
+        <div className="bg-orange-500 rounded-md">
           <button
             onClick={() => setBrashSizeIsOpen(!brashSizeIsOpen)}
             className="flex justify-center rounded-md p-1 active:border-white  border-orange-500 border-2 border-solid">
@@ -77,7 +75,9 @@ const Paint = () => {
             <div className="w-full p-2">
               <input
                 type="range"
-                step="1"
+                step="0.2"
+                min={0.3}
+                max={50}
                 className="w-full h-1 m bg-white rounded-full appearance-none"
                 value={brushSize}
                 onChange={(e) => setBrushSize(Number(e.currentTarget.value))}
@@ -85,7 +85,7 @@ const Paint = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="bg-orange-500 rounded-md">
           <button
             onClick={brushHundler('brush')}
             className={`flex justify-center rounded-md p-1 active:border-white  border-2 border-solid ${getBorderColorForBrashButtons(
@@ -103,7 +103,7 @@ const Paint = () => {
             </svg>
           </button>
         </div>
-        <div>
+        <div className="bg-orange-500 rounded-md">
           {' '}
           <button
             onClick={brushHundler('circle')}
@@ -122,7 +122,7 @@ const Paint = () => {
             </svg>
           </button>
         </div>
-        <div>
+        <div className="bg-orange-500 rounded-md">
           <button
             onClick={brushHundler('square')}
             className={`flex justify-center rounded-md p-1 active:border-white  border-2 border-solid ${getBorderColorForBrashButtons(
@@ -140,8 +140,8 @@ const Paint = () => {
             </svg>
           </button>
         </div>
-        <div>
-          <button className="flex justify-center p-1 active:border-white rounded-md border-orange-500 border-2 border-solid">
+        <div className="bg-orange-500 rounded-md">
+          <a href={routes.Paint()} className="flex justify-center p-1 active:border-white rounded-md border-orange-500 border-2 border-solid">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -151,15 +151,10 @@ const Paint = () => {
               viewBox="0 0 16 16">
               <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
             </svg>
-          </button>
+          </a>
         </div>
       </div>
-      <canvas
-        onMouseDown={() => setDraw(true)}
-        onMouseUp={() => setDraw(false)}
-        className="bg-white w-full h-full"
-        onMouseMove={mauseMoveHandler}>
-      </canvas>
+      <Canvas brushSize={brushSize} color={color}/>
     </div>
   );
 };
