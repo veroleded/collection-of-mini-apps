@@ -3,9 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 interface Props {
   brushSize: number;
   color: string;
+  brush: 'round' | 'square' | 'butt';
 }
 
-const Canvas = ({ brushSize, color }: Props) => {
+const Canvas = ({ brushSize, color, brush }: Props) => {
   const [draw, setDraw] = useState(false);
   const [prevX, setPrevX] = useState(0);
   const [prevY, setPrevY] = useState(0);
@@ -21,11 +22,11 @@ const Canvas = ({ brushSize, color }: Props) => {
 
     if (canvas.width !== width || canvas.height !== height) {
       const { devicePixelRatio: ratio = 1 } = window;
-       const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+      const context = canvas.getContext('2d') as CanvasRenderingContext2D;
       canvas.width = width * ratio;
       canvas.height = height * ratio;
       context.scale(ratio, ratio);
-      console.log(context)
+      console.log(context);
     }
   }, []);
 
@@ -35,14 +36,20 @@ const Canvas = ({ brushSize, color }: Props) => {
       const canvas = canvasRef.current as HTMLCanvasElement;
       const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
       ctx.strokeStyle = color;
+      ctx.fillStyle = color;
       ctx.lineWidth = brushSize;
-      ctx.beginPath();
-      ctx.moveTo(prevX, prevY);
-      ctx.lineTo(currentX, currentY);
-      // ctx.arcTo(currentX, currentY,currentX, currentY, 1)
-      ctx.stroke();
+      ctx.lineCap = brush;
+      // ctx.strokeRect(currentX, currentY, 2, 3)
+      if (draw) {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currentX, currentY);
+        // ctx.arc(prevX, prevY,currentX, currentY, 1, true)
+        // ctx.roundRect(prevX, prevY,currentX, currentY)
+        ctx.stroke();
+      }
     }
-  }, [prevX, prevY, currentX, currentY, color, brushSize]);
+  }, [prevX, prevY, currentX, currentY, color, brushSize, draw, brush]);
 
   const mauseUpHandler = () => {
     setDraw(false);
@@ -53,19 +60,19 @@ const Canvas = ({ brushSize, color }: Props) => {
   };
 
   const mauseMoveHandler = (e: React.MouseEvent) => {
-    if (draw) {
-      console.log(prevX, prevY, currentX, currentY)
-        setCurrentX(e.clientX);
-        setCurrentY(e.clientY);
-        setPrevX(currentX);
-        setPrevY(currentY);
-    }
+    console.log(prevX, prevY, currentX, currentY);
+    setCurrentX(e.clientX);
+    setCurrentY(e.clientY);
+    setPrevX(currentX);
+    setPrevY(currentY);
   };
 
   return (
     <canvas
       id="canvas"
       ref={canvasRef}
+      width={1080}
+      height={600}
       onMouseDown={() => setDraw(true)}
       onMouseUp={mauseUpHandler}
       className="bg-white w-full h-full min-w-full min-h-full rounded-r-md"
