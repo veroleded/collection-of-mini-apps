@@ -64,13 +64,15 @@ const Paint = (props: { width: number; height: number }) => {
   };
 
   const onMouseUp = () => {
-    const { x, y } = getScaledPoint(stage, 1);
-    setCurrentLine(null);
-    setLines([
-      ...lines,
-      //@ts-ignore
-      { ...currentLine, points: [...currentLine.points, x, y] },
-    ]);
+    if( currentLine) {
+      const { x, y } = getScaledPoint(stage, 1);
+      setCurrentLine(null);
+      setLines([
+        ...lines,
+        //@ts-ignore
+        { ...currentLine, points: [...currentLine.points, x, y] },
+      ]);
+    }
   };
 
   const cleanHandler = () => {
