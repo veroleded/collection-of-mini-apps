@@ -20,7 +20,7 @@ function App() {
                 <Route path={routes.Main()} element={<Main />} />
                 <Route path={routes.Bin2Dec()} element={<Converter />} />
                 <Route path={routes.Calculator()} element={<Calc />} />
-                <Route path={routes.Paint()} element={<Paint />} />
+                <Route path={routes.Paint()} element={<Paint width={1000} height={600}/>} />
               </Routes>
             </div>
             <navContext.Consumer>
