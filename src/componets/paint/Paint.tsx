@@ -28,7 +28,7 @@ const Paint = (props: { width: number; height: number }) => {
 
   useEffect(() => {
     if (stageRef) {
-      stage = stageRef.current as unknown as Konva.Stage;
+      stage = stageRef.current as unknown as Konva.Stage;   // eslint-disable-line
     }
   }, [currentLine, lines, color, brush, brushSize]);
 
@@ -69,7 +69,6 @@ const Paint = (props: { width: number; height: number }) => {
       setCurrentLine(null);
       setLines([
         ...lines,
-        //@ts-ignore
         { ...currentLine, points: [...currentLine.points, x, y] },
       ]);
     }

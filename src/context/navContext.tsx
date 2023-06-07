@@ -8,8 +8,8 @@ interface AppSelectContext {
 
 export const navContext = createContext<AppSelectContext>({
   navPanel: false,
-  open: () => {},
-  close: () => {},
+  open: () => {},  // eslint-disable-line
+  close: () => {},   // eslint-disable-line
 });
 
 export const AppSelectProvider = ({ children }: { children: React.ReactNode }) => {

@@ -34,7 +34,7 @@ const ToolBar = ({
     setColor(value);
   };
 
-  const brushHundler = (value: 'brush' | 'line') => (e: React.FormEvent<HTMLButtonElement>) => {
+  const brushHundler = (value: 'brush' | 'line') => () => {
     setBrush(value);
   };
 
