@@ -1,5 +1,8 @@
 const en = {
   translation: {
+    main: {
+      description: 'Here is a small collection of applications that I write in my spare time to develop my skills as a developer. The collection will be gradually expanded.'
+    },
     header: {
       lang: 'EN',
       calc: 'Calculator',
